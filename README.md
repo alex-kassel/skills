@@ -1,95 +1,50 @@
-# Architecture Skills & Plugin Bundles for AI Agents
+# Standalone AI Agent Skills Registry
 
-> Production-ready, vendor-neutral architecture skills and plugin bundles for AI coding assistants and developers. Built for deterministic documentation-as-code, single-agent ownership locking, audit safety, and continuous skill maintenance.
+> Production-ready, evidence-validated architecture skills for AI coding agents and developers.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Validation: Passing](https://img.shields.io/badge/Validation-Passing-brightgreen.svg)](evals/forward-tests.md)
-[![Architecture: V1--Bound](https://img.shields.io/badge/Architecture-V1--Bound-orange.svg)](design/)
-
----
-
-## 🎯 Repository Overview
-
-`architecture-skills` is a maintainer repository for reusable architecture skills and installable plugin bundles. It separates reusable capabilities into two top-level directories:
-
-* 🛠️ **[`skills/`](skills/README.md)**: Individual standalone skill packages (e.g. `session-lifecycle`, `scaffold-subproject-docs`, `guide-architecture-design`, `execute-autonomous-audit`).
-* 📦 **[`plugins/`](plugins/README.md)**: Pre-packaged plugin bundles (e.g. `architecture-suite`) that group related skills into a single 1-step installation manifest (`plugin.json`).
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Source: architecture-skills](https://img.shields.io/badge/Source-architecture--skills-orange.svg)](https://github.com/alex-kassel/architecture-skills)
 
 ---
 
-## 📁 Repository Structure
+## 📚 Available Standalone Skills
 
-```text
-codex-architecture-skills/
-├── README.md               # Root repository overview (this document)
-├── AGENTS.md               # Governance rules, intent routing, and guardrail policies
-├── skills/                 # Standalone architecture skill packages (see skills/README.md)
-│   ├── session-lifecycle/
-│   ├── scaffold-subproject-docs/
-│   ├── guide-architecture-design/
-│   └── ...
-├── plugins/                # Plugin bundle manifests (see plugins/README.md)
-│   └── architecture-suite/
-├── evals/                  # Forward-test ledgers and acceptance criteria
-├── design/                 # Architectural specifications and rationale
-├── audits/                 # Multi-perspective autonomous audit logs
-└── feedback/               # Incident & triage logs
-```
+| Skill | Category | Description | Spec |
+| --- | --- | --- | --- |
+| **`session-lifecycle`** | Lifecycle & Locking | Manage exclusive subproject working sessions, root corridor detection, single-agent ownership locking, RFC 3339 duration tracking, and handoff session closure. | [`SKILL.md`](/skills/session-lifecycle/SKILL.md) |
+| **`scaffold-subproject-docs`** | Scaffolding & Setup | Scaffold standard 5-file architecture documentation suite (`README.md`, `session-handoff-protocol.md`, `project-documentation-roadmap.md`, `architecture-planning-roadmap.md`, `worklog.md`). | [`SKILL.md`](/skills/scaffold-subproject-docs/SKILL.md) |
+| **`guide-architecture-design`** | Design & Workflow | Guide owner-led architecture design workflows, scenario-based interviews, decision capture, and atomic documentation synchronization. | [`SKILL.md`](/skills/guide-architecture-design/SKILL.md) |
+| **`audit-architecture-handoff`** | Audit & Verification | Perform strictly read-only audits for fresh-session handoff safety, architectural consistency, document drift, and implementation readiness gates. | [`SKILL.md`](/skills/audit-architecture-handoff/SKILL.md) |
+| **`git-release-preflight`** | Git & Release | Pre-push readiness evaluations, guardrail verification, risk assessment, pushback presentation, and clean git release/push execution. | [`SKILL.md`](/skills/git-release-preflight/SKILL.md) |
+| **`execute-autonomous-audit`** | Audit & Verification | Execute autonomous 4-phase, 2-pass iterative multi-perspective audits of codebases, software architecture, or documentation sets. | [`SKILL.md`](/skills/execute-autonomous-audit/SKILL.md) |
+| **`publish-packagist-package`** | Release & Publishing | Guide standalone package publishing, Composer metadata validation, dual Git workflow setup, and Packagist CI scaffolding. | [`SKILL.md`](/skills/publish-packagist-package/SKILL.md) |
+| **`validate-repository-guardrails`** | Quality & Guardrails | Execute deterministic quality, relative path, and English-only language guardrail checks across repository files. | [`SKILL.md`](/skills/validate-repository-guardrails/SKILL.md) |
+| **`maintain-architecture-skills`** | Maintenance & Meta | Execute the 6-step skill maintenance protocol for feedback triage, zero-write preflight, and skill updates. | [`SKILL.md`](/skills/maintain-architecture-skills/SKILL.md) |
 
 ---
 
-## 🚀 Quick Start
+## 📦 Prefer 1-Step Plugin Bundles?
 
-### 1. Loading a Plugin Bundle (Recommended)
+If you prefer installing pre-packaged bundles of related skills in a single step, see the **[Plugin Bundles Registry](/plugins/README.md)** (e.g. `architecture-suite`).
 
-To equip an AI agent or IDE with the complete architecture suite in 1 step, point to the plugin manifest in [`plugins/README.md`](plugins/README.md):
+---
+
+## ⚡ Quickstart
+
+To install any standalone skill into your local agent environment (e.g. Antigravity, Cursor, Claude Code, custom agents), copy the target skill folder into your agent's skill path:
 
 ```bash
-# Clone the architecture skills distribution repository
+# Clone the public skills distribution repository
 git clone https://github.com/alex-kassel/skills.git
 
-# Point your agent to the architecture-suite plugin bundle
-# Loads session-lifecycle, scaffold-subproject-docs, and guide-architecture-design automatically
-```
-
-### 2. Loading Individual Standalone Skills
-
-To install specific individual skills, copy the target skill folder from [`skills/README.md`](skills/README.md):
-
-```bash
-# Copy a specific skill to your local agent skills path
+# Copy desired skill folder to your agent's skill directory
 cp -r skills/session-lifecycle ~/.gemini/config/skills/
 cp -r skills/scaffold-subproject-docs ~/.gemini/config/skills/
 ```
 
 ---
 
-## 🛠️ Verification & Release Sync
+## 🔗 Related Documentation
 
-Validate repository guardrails and sync releases to the public distribution repository:
-
-```bash
-# Run cross-platform path and language guardrail checks
-python scripts/validate_relative_paths.py
-python scripts/validate_english_only.py
-
-# Sync skills/ and plugins/ to alex-kassel/skills distribution repository
-./scripts/sync-skills.sh      # macOS / Linux Bash
-powershell -File scripts/sync-skills.ps1  # Windows PowerShell
-```
-
----
-
-## 📜 Governance & Maintenance
-
-All skill updates follow the 6-step maintenance protocol defined in [`skills/maintain-architecture-skills/SKILL.md`](skills/maintain-architecture-skills/SKILL.md):
-1. **Feedback Capture**: Log incidents in `feedback/YYYY-MM-DD-*.md`.
-2. **Owner Triage**: Present proposal for explicit approval (`+`).
-3. **Autonomous Audit**: Execute 4-phase, 2-pass audits per [`skills/execute-autonomous-audit/SKILL.md`](skills/execute-autonomous-audit/SKILL.md).
-4. **Guardrail Check**: Verify 100% relative paths and English-only compliance before commit.
-
----
-
-## 📄 License
-
-This repository is licensed under the [MIT License](LICENSE).
+- 📦 **[Plugin Bundles Registry](/plugins/README.md)**: Explore 1-step plugin bundles.
+- 🏠 **[Root Repository Overview](/README.md)**: Return to main repository overview.
